@@ -11,9 +11,9 @@ type Node struct {
 }
 
 type Queue struct {
-	Head *Node
+	Head   *Node
 	Length int
-	Tail *Node
+	Tail   *Node
 }
 
 type Cache struct {
@@ -24,11 +24,18 @@ type Cache struct {
 type Hash map[string]*Node
 
 func NewCache() Cache {
-	return Cache{Queue: NewQueue(), hash: Hash{}}
+	return Cache{Queue: NewQueue(), Hash: Hash{}}
 }
 
 func NewQueue() Queue {
+	head := &Node{}
 
+	tail := &Node{}
+
+	head.Right = tail
+	tail.Left = head
+
+	return Queue{Head: head, Tail: tail}
 }
 
 func main() {
