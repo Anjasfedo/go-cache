@@ -5,21 +5,31 @@ import (
 )
 
 type Node struct {
-	Left
-
-	Right
+	Left  *Node
+	Val   string
+	Right *Node
 }
 
 type Queue struct {
-	Node
+	Head *Node
+	Length int
+	Tail *Node
 }
 
 type Cache struct {
 	Queue Queue
-	Hash Hash
+	Hash  Hash
 }
 
 type Hash map[string]*Node
+
+func NewCache() Cache {
+	return Cache{Queue: NewQueue(), hash: Hash{}}
+}
+
+func NewQueue() Queue {
+
+}
 
 func main() {
 	fmt.Println("Start Cache")
