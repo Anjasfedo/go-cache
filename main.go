@@ -38,6 +38,20 @@ func NewQueue() Queue {
 	return Queue{Head: head, Tail: tail}
 }
 
+func (c *Cache) Check(str string) {
+	node := &Node{}
+
+	if val, ok := c.Hash[str]; ok {
+		node = c.Remove(val)
+	} else {
+		node = &Node{Val: str}
+	}
+
+	c.Add(node)
+
+	c.Hash[str] = node
+}
+
 func main() {
 	fmt.Println("Start Cache")
 
