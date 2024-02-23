@@ -52,6 +52,22 @@ func (c *Cache) Check(str string) {
 	c.Hash[str] = node
 }
 
+func (c *Cache) Remove(n *Node) *Node {
+	fmt.Printf("remove: %s\n", n.Val)
+
+	left := n.Left
+	right := n.Right
+
+	left.Right = right
+	right.Left = left
+
+	c.Queue.Length -= 1
+
+	delete(c.Hash, n.Val)
+
+	return n
+}
+
 func main() {
 	fmt.Println("Start Cache")
 
