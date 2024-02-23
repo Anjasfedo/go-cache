@@ -90,12 +90,34 @@ func (c *Cache) Add(n *Node) {
 	}
 }
 
+func (c *Cache) Display() {
+	c.Queue.Display()
+}
+
+func (q *Queue) Display() {
+	node := q.Head.Right
+
+	fmt.Printf("%d - [", q.Length)
+
+	for i := 0; i < q.Length; i++ {
+		fmt.Printf("{%s}", node.Val)
+
+		if i < q.Length - 1 {
+			fmt.Printf("<-->")
+		}
+
+		node = node.Right
+	}
+
+	fmt.Println("]")
+}
+
 func main() {
 	fmt.Println("Start Cache")
 
 	cache := NewCache()
 
-	for _, word := range []string{"banana", "papaya", "potato", "tomato", "tree", "cat"} {
+	for _, word := range []string{"banana", "papaya", "potato", "tomato", "tree", "cat", "geprek"} {
 		cache.Check(word)
 		cache.Display()
 	}
